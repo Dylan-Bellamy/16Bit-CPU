@@ -1,0 +1,27 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY mux2to1 IS
+	PORT (w0,w1 : IN STD_LOGIC;
+			s		: IN STD_LOGIC;
+			f		: OUT STD_LOGIC);
+	
+END mux2to1;
+
+ARCHITECTURE Behavoir OF mux2to1 IS
+BEGIN 
+	WITH s SELECT 
+		f<= w0 WHEN '0',
+			 w1 WHEN OTHERS;
+END Behavoir;
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+PACKAGE mux2to1_package IS
+	COMPONENT mux2to1
+		PORT (w0,w1 : IN STD_LOGIC;
+				s		: IN STD_LOGIC;
+				f		: OUT STD_LOGIC);
+	END COMPONENT;
+END mux2to1_package;
+	
