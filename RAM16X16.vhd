@@ -12,7 +12,7 @@ entity RAM_16X16 is
 end RAM_16X16;
 
 architecture behavior of RAM_16X16 is
-	type ram_array is array (0 to 15 ) of std_logic_vector (7 downto 0);
+	type ram_array is array (0 to 15) of std_logic_vector (15 downto 0);
 	signal ram_data: ram_array :=(
 	x"10F0",x"01A0",x"7721",x"6427",
 	x"9999",x"25EA",x"00FF",x"1A77", 
