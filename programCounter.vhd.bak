@@ -1,0 +1,31 @@
+entity pc_unit is
+    Port ( clk : in  STD_LOGIC;
+           pc_in : in  STD_LOGIC_VECTOR (15 downto 0);
+           pc_inop : in  STD_LOGIC_VECTOR (1 downto 0);
+           pc_out : out  STD_LOGIC_VECTOR (15 downto 0)
+           );
+end pc_unit;
+
+architecture behavior of pc_unit is
+  signal current_pc: std_logic_vector( 15 downto 0) := X"0000";
+begin
+
+  process (clk)
+  begin
+    if rising_edge(clk) then
+      case pc_inop is
+        when "00" => 	-- Keep PC the same/halt
+        when "01" => 	-- Increment
+          current_pc <= std_logic_vector(unsigned(current_pc) + 1);
+        when "10" => 	-- Set from external input
+          current_pc <= pc_in;
+        when "11" => 	-- Reset
+          current_pc <= X"0000";
+        when others =>
+      end case;
+    end if;
+  end process;
+
+  pc_out <= current_pc;
+
+end behavior;
